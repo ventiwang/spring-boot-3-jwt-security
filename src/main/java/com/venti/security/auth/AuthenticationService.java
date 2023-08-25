@@ -13,7 +13,6 @@ import com.venti.security.config.JwtService;
 import com.venti.security.token.Token;
 import com.venti.security.token.TokenRepository;
 import com.venti.security.token.TokenType;
-import com.venti.security.user.Role;
 import com.venti.security.user.User;
 import com.venti.security.user.UserRepository;
 
@@ -36,7 +35,7 @@ public class AuthenticationService {
                                 .lastname(request.getLastname())
                                 .email(request.getEmail())
                                 .password(passwordEncoder.encode(request.getPassword()))
-                                .role(Role.USER)
+                                .role(request.getRole())
                                 .build();
                 var savedUser = repository.save(user);
                 var jwtToken = jwtService.generateToken(user);
